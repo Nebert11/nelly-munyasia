@@ -44,7 +44,7 @@ export default function Gallery() {
   }, [lightboxIndex, close, next, prev]);
 
   return (
-    <section className="relative bg-forest-800 section-py">
+    <section className="relative bg-gold-50 section-py">
       <div className="container-px">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -58,9 +58,9 @@ export default function Gallery() {
             Gallery
             <span className="h-px w-8 bg-gold-400" />
           </span>
-          <h2 className="mt-5 font-serif text-3xl font-medium leading-tight text-cream-50 sm:text-4xl lg:text-5xl">
+          <h2 className="mt-5 font-serif text-3xl font-medium leading-tight text-forest-800 sm:text-4xl lg:text-5xl">
             Moments of{' '}
-            <span className="text-gold-400">impact</span>
+            <span className="text-gold-600">impact</span>
           </h2>
         </motion.div>
 
@@ -82,7 +82,7 @@ export default function Gallery() {
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest-800/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest-900/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               <p className="absolute bottom-4 left-4 right-4 text-left text-xs font-medium text-cream-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                 {img.caption}
               </p>

@@ -14,11 +14,11 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative overflow-hidden bg-forest-700 section-py">
+    <section id="contact" className="relative overflow-hidden bg-white section-py">
       {/* Decorative background */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-20">
         <div className="absolute -left-20 top-10 h-72 w-72 rounded-full bg-gold-400 blur-3xl" />
-        <div className="absolute -right-20 bottom-10 h-72 w-72 rounded-full bg-forest-500 blur-3xl" />
+        <div className="absolute -right-20 bottom-10 h-72 w-72 rounded-full bg-forest-200 blur-3xl" />
       </div>
 
       <div className="container-px relative z-10">
@@ -34,10 +34,10 @@ export default function Contact() {
               <span className="h-px w-8 bg-gold-400" />
               CONTACTS
             </span>
-            <h2 className="mt-5 font-serif text-4xl font-medium leading-tight text-cream-50 sm:text-5xl lg:text-6xl">
+            <h2 className="mt-5 font-serif text-4xl font-medium leading-tight text-forest-800 sm:text-5xl lg:text-6xl">
               CONTACTS
             </h2>
-            <p className="mt-6 max-w-md text-base leading-relaxed text-cream-100/70 sm:text-lg">
+            <p className="mt-6 max-w-md text-base leading-relaxed text-forest-700/80 sm:text-lg">
               Off Langata Road • Opposite Galleria
               <br />
               <br />
@@ -56,7 +56,7 @@ export default function Contact() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full border border-cream-100/20 px-5 py-2.5 text-sm font-medium text-cream-100 transition-all duration-300 hover:border-gold-400 hover:text-gold-300"
+                    className="inline-flex items-center gap-2 rounded-full border border-forest-200 px-5 py-2.5 text-sm font-medium text-forest-700 transition-all duration-300 hover:border-gold-400 hover:text-gold-700"
                   >
                     <Icon className="h-4 w-4" />
                     {link.label}
@@ -75,13 +75,13 @@ export default function Contact() {
           >
             <form
               onSubmit={handleSubmit}
-              className="rounded-2xl border border-cream-100/10 bg-forest-800/40 p-6 backdrop-blur-sm sm:p-8"
+              className="rounded-2xl border border-forest-100 bg-cream-50 p-6 shadow-sm sm:p-8"
             >
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="name"
-                    className="mb-2 block text-xs font-semibold uppercase tracking-wide-lg text-cream-100/60"
+                    className="mb-2 block text-xs font-semibold uppercase tracking-wide-lg text-forest-700/65"
                   >
                     Name
                   </label>
@@ -91,13 +91,13 @@ export default function Contact() {
                     type="text"
                     required
                     placeholder="Your full name"
-                    className="w-full rounded-lg border border-cream-100/15 bg-forest-700/50 px-4 py-3 text-sm text-cream-50 placeholder:text-cream-100/30 focus:border-gold-400/50 focus:outline-none focus:ring-1 focus:ring-gold-400/30"
+                    className="w-full rounded-lg border border-forest-200 bg-white px-4 py-3 text-sm text-forest-800 placeholder:text-forest-500/60 focus:border-gold-400/50 focus:outline-none focus:ring-1 focus:ring-gold-400/30"
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="email"
-                    className="mb-2 block text-xs font-semibold uppercase tracking-wide-lg text-cream-100/60"
+                    className="mb-2 block text-xs font-semibold uppercase tracking-wide-lg text-forest-700/65"
                   >
                     Email
                   </label>
@@ -107,13 +107,13 @@ export default function Contact() {
                     type="email"
                     required
                     placeholder="you@example.com"
-                    className="w-full rounded-lg border border-cream-100/15 bg-forest-700/50 px-4 py-3 text-sm text-cream-50 placeholder:text-cream-100/30 focus:border-gold-400/50 focus:outline-none focus:ring-1 focus:ring-gold-400/30"
+                    className="w-full rounded-lg border border-forest-200 bg-white px-4 py-3 text-sm text-forest-800 placeholder:text-forest-500/60 focus:border-gold-400/50 focus:outline-none focus:ring-1 focus:ring-gold-400/30"
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="organization"
-                    className="mb-2 block text-xs font-semibold uppercase tracking-wide-lg text-cream-100/60"
+                    className="mb-2 block text-xs font-semibold uppercase tracking-wide-lg text-forest-700/65"
                   >
                     Organization
                   </label>
@@ -122,13 +122,13 @@ export default function Contact() {
                     name="organization"
                     type="text"
                     placeholder="Your organization"
-                    className="w-full rounded-lg border border-cream-100/15 bg-forest-700/50 px-4 py-3 text-sm text-cream-50 placeholder:text-cream-100/30 focus:border-gold-400/50 focus:outline-none focus:ring-1 focus:ring-gold-400/30"
+                    className="w-full rounded-lg border border-forest-200 bg-white px-4 py-3 text-sm text-forest-800 placeholder:text-forest-500/60 focus:border-gold-400/50 focus:outline-none focus:ring-1 focus:ring-gold-400/30"
                   />
                 </div>
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="subject"
-                    className="mb-2 block text-xs font-semibold uppercase tracking-wide-lg text-cream-100/60"
+                    className="mb-2 block text-xs font-semibold uppercase tracking-wide-lg text-forest-700/65"
                   >
                     Subject
                   </label>
@@ -138,13 +138,13 @@ export default function Contact() {
                     type="text"
                     required
                     placeholder="What is this about?"
-                    className="w-full rounded-lg border border-cream-100/15 bg-forest-700/50 px-4 py-3 text-sm text-cream-50 placeholder:text-cream-100/30 focus:border-gold-400/50 focus:outline-none focus:ring-1 focus:ring-gold-400/30"
+                    className="w-full rounded-lg border border-forest-200 bg-white px-4 py-3 text-sm text-forest-800 placeholder:text-forest-500/60 focus:border-gold-400/50 focus:outline-none focus:ring-1 focus:ring-gold-400/30"
                   />
                 </div>
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="message"
-                    className="mb-2 block text-xs font-semibold uppercase tracking-wide-lg text-cream-100/60"
+                    className="mb-2 block text-xs font-semibold uppercase tracking-wide-lg text-forest-700/65"
                   >
                     Message
                   </label>
@@ -154,7 +154,7 @@ export default function Contact() {
                     required
                     rows={4}
                     placeholder="Tell me more..."
-                    className="w-full resize-none rounded-lg border border-cream-100/15 bg-forest-700/50 px-4 py-3 text-sm text-cream-50 placeholder:text-cream-100/30 focus:border-gold-400/50 focus:outline-none focus:ring-1 focus:ring-gold-400/30"
+                    className="w-full resize-none rounded-lg border border-forest-200 bg-white px-4 py-3 text-sm text-forest-800 placeholder:text-forest-500/60 focus:border-gold-400/50 focus:outline-none focus:ring-1 focus:ring-gold-400/30"
                   />
                 </div>
               </div>

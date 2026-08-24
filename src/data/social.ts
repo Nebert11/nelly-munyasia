@@ -1,4 +1,4 @@
-import { Link2, Linkedin, Mail, type LucideIcon } from 'lucide-react';
+import { Facebook, Linkedin, Link2, type LucideIcon } from 'lucide-react';
 
 export interface SocialLink {
   id: string;
@@ -9,21 +9,21 @@ export interface SocialLink {
 
 export const socialLinks: SocialLink[] = [
   {
+    id: 'facebook',
+    label: 'Facebook',
+    href: 'https://web.facebook.com/Nelly.Munyasia',
+    icon: Facebook,
+  },
+  {
     id: 'linkedin',
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/nelly-munyasia',
+    href: 'https://www.linkedin.com/in/nelly-munyasia-0751b2166/',
     icon: Linkedin,
   },
   {
-    id: 'email',
-    label: 'Email',
-    href: 'mailto:hello@nellymunyasia.com',
-    icon: Mail,
-  },
-  {
     id: 'twitter',
-    label: 'Twitter',
-    href: 'https://twitter.com/nellymunyasia',
+    label: 'X',
+    href: 'https://x.com/nellymunyasia',
     icon: Link2,
   },
 ];

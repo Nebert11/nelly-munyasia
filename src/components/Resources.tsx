@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FileText, PlayCircle, X } from 'lucide-react';
+import { FileText, X } from 'lucide-react';
 import { resources } from '@/data/resources';
 
 function getYoutubeThumbnail(url?: string) {
@@ -56,7 +56,7 @@ export default function Resources() {
 
   return (
     <>
-      <section id="resources" className="relative bg-forest-700 section-py">
+      <section id="resources" className="relative bg-cream-50 section-py">
         <div className="container-px">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -69,9 +69,9 @@ export default function Resources() {
             <span className="h-px w-8 bg-gold-400" />
             Resources
           </span>
-          <h2 className="mt-5 font-serif text-3xl font-medium leading-tight text-cream-50 sm:text-4xl lg:text-5xl">
+          <h2 className="mt-5 font-serif text-3xl font-medium leading-tight text-forest-800 sm:text-4xl lg:text-5xl">
             A library of work, words &amp;{' '}
-            <span className="text-gold-400">research</span>
+            <span className="text-gold-600">research</span>
           </h2>
         </motion.div>
 
@@ -90,46 +90,58 @@ export default function Resources() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.6, delay: (i % 3) * 0.1 }}
-              className="card-surface group flex flex-col p-6 hover:border-gold-400/30"
+              className="group flex flex-col rounded-2xl border border-forest-100 bg-white p-6 shadow-sm hover:border-gold-300"
             >
               {isVideo && (
-                <div className="group/video relative mb-5 overflow-hidden rounded-xl">
-                  <img
-                    src={thumbnail}
-                    alt={resource.title}
-                    className="aspect-video w-full object-cover transition-transform duration-500 group-hover/video:scale-105"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-forest-900/35" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <button
-                      type="button"
-                      onClick={() => setActiveVideo(embedUrl)}
-                      className="inline-flex items-center justify-center rounded-full bg-gold-400 p-2 text-forest-700 shadow-lg shadow-forest-900/40 transition-transform duration-300 hover:scale-110"
-                      aria-label="Play video"
-                    >
-                      <PlayCircle className="h-8 w-8" />
-                    </button>
-                  </div>
+                <div className="mb-5">
+                  <button
+                    type="button"
+                    onClick={() => setActiveVideo(embedUrl)}
+                    className="group/video relative block w-full overflow-hidden rounded-xl"
+                    aria-label="Play video"
+                  >
+                    <img
+                      src={thumbnail}
+                      alt={resource.title}
+                      className="aspect-video w-full object-cover transition-transform duration-500 group-hover/video:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-forest-900/30" />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="inline-flex h-14 w-20 items-center justify-center rounded-2xl bg-[#FF0000] shadow-lg shadow-forest-900/40">
+                        <span className="ml-1 h-0 w-0 border-y-[9px] border-y-transparent border-l-[14px] border-l-white" />
+                      </span>
+                    </div>
+                    <span className="absolute bottom-3 right-3 rounded bg-black/80 px-2 py-1 font-mono text-xs font-semibold text-white">
+                      {resource.duration ?? '--:--'}
+                    </span>
+                  </button>
+                  {!isRawUrl(resource.title) && (
+                    <h3 className="mt-4 px-1 font-serif text-xl font-semibold text-forest-800">
+                      {resource.title}
+                    </h3>
+                  )}
                 </div>
               )}
 
+              {!isVideo && (
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gold-400/10 text-gold-400 transition-colors group-hover:bg-gold-400 group-hover:text-forest-700">
                   <FileText className="h-5 w-5" />
                 </div>
-                <span className="rounded-full border border-cream-100/15 px-3 py-1 text-[10px] font-semibold uppercase tracking-wide-lg text-cream-100/60">
+                <span className="rounded-full border border-forest-200 px-3 py-1 text-[10px] font-semibold uppercase tracking-wide-lg text-forest-700/65">
                   {resource.type}
                 </span>
               </div>
+              )}
 
-              {!isRawUrl(resource.title) && (
-                <h3 className="mt-5 font-serif text-lg font-semibold leading-snug text-cream-50">
+              {!isVideo && !isRawUrl(resource.title) && (
+                <h3 className="mt-5 font-serif text-lg font-semibold leading-snug text-forest-800">
                   {resource.title}
                 </h3>
               )}
               {!isRawUrl(resource.description) && (
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-cream-100/60">
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-forest-700/75">
                   {resource.description}
                 </p>
               )}
@@ -148,8 +160,8 @@ export default function Resources() {
               )}
 
               {resource.date && (
-                <div className="mt-5 border-t border-cream-100/10 pt-4">
-                  <span className="text-xs text-cream-100/40">{resource.date}</span>
+                <div className="mt-5 border-t border-forest-100 pt-4">
+                  <span className="text-xs text-forest-700/55">{resource.date}</span>
                 </div>
               )}
             </motion.div>
@@ -166,7 +178,7 @@ export default function Resources() {
           onClick={closeVideo}
         >
           <div
-            className="relative h-[80vh] w-[80vw] max-h-[900px] max-w-[1400px]"
+            className="relative h-[88vh] w-[88vw] max-h-[920px] max-w-[1600px]"
             onClick={(event) => event.stopPropagation()}
           >
             <button

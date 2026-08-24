@@ -4,6 +4,7 @@ export interface Resource {
   type: string;
   date: string;
   description: string;
+  duration?: string;
   url?: string;
 }
 
@@ -14,6 +15,7 @@ export const resources: Resource[] = [
     type: 'Videos',
     date: '',
     description: 'Reproductive Health Network Kenya',
+    duration: '13:06',
     url: 'https://www.youtube.com/watch?v=KZN6LGPQVYI&t=93s',
   },
   {
@@ -22,6 +24,7 @@ export const resources: Resource[] = [
     type: 'Videos',
     date: '',
     description: 'Reproductive Health Network Kenya',
+    duration: '0:36',
     url: 'https://www.youtube.com/watch?v=a-pS8EuOGaY',
   },
   {
@@ -30,6 +33,7 @@ export const resources: Resource[] = [
     type: 'Videos',
     date: '',
     description: 'Reproductive Health Network Kenya',
+    duration: '14:44',
     url: 'https://www.youtube.com/watch?v=69S3KRzodMA&t=15s',
   },
   {
@@ -38,6 +42,7 @@ export const resources: Resource[] = [
     type: 'Videos',
     date: '',
     description: 'Reproductive Health Network Kenya',
+    duration: '9:18',
     url: 'https://www.youtube.com/watch?v=jJrEAum9pDg&t=26s',
   },
   {
@@ -46,6 +51,7 @@ export const resources: Resource[] = [
     type: 'Videos',
     date: '',
     description: 'Reproductive Health Network Kenya',
+    duration: '2:05',
     url: 'https://www.youtube.com/watch?v=C3F74jX5Zs0',
   },
   {

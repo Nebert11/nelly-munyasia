@@ -30,11 +30,11 @@ export default function Hero() {
       {/* Background community image with overlays */}
       <div className="absolute inset-0">
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-20"
+          className="absolute inset-0 bg-cover bg-center opacity-35"
           style={{ backgroundImage: `url(${bgImage})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-forest-700 via-forest-700/85 to-forest-700/40" />
-        {/* <div className="absolute inset-0 bg-gradient-to-t from-forest-700 via-transparent to-forest-700/60" /> */}
+        <div className="absolute inset-0 bg-gradient-to-r from-forest-700/80 via-forest-700/48 to-forest-800/72" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,44,36,0.08)_0%,rgba(6,44,36,0.22)_38%,rgba(6,44,36,0.62)_100%)]" />
       </div>
 
       {/* Content */}
@@ -70,7 +70,7 @@ export default function Hero() {
             {/* Supporting statement */}
             <motion.p
               variants={item}
-              className="mt-6 max-w-md text-base leading-relaxed text-cream-100/75 sm:text-lg"
+              className="mt-6 max-w-lg text-base leading-relaxed text-cream-100/75 sm:text-lg"
             >
               Strengthening health systems. Advancing reproductive health and
               rights. Empowering women and communities to thrive.

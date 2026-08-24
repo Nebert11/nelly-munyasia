@@ -143,7 +143,7 @@ export default function Story() {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <section id="story" className="relative bg-forest-700 section-py">
+    <section id="story" className="relative bg-white section-py">
       <div className="container-px">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Left: Image */}
@@ -161,7 +161,7 @@ export default function Story() {
                 className="aspect-[4/5] w-full object-cover"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest-700/60 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest-900/30 via-transparent to-transparent" />
             </div>
             {/* Decorative frame */}
             <div className="absolute -bottom-4 -right-4 h-32 w-32 rounded-tl-2xl border-l-2 border-t-2 border-gold-400/30" />
@@ -179,7 +179,7 @@ export default function Story() {
               My Story
             </span>
 
-            <h2 className="mt-5 font-serif text-3xl font-medium leading-tight text-cream-50 sm:text-4xl lg:text-5xl">
+            <h2 className="mt-5 font-serif text-3xl font-medium leading-tight text-forest-800 sm:text-4xl lg:text-5xl">
               MY STORY
             </h2>
 
@@ -187,7 +187,7 @@ export default function Story() {
               {storyParagraphs.slice(0, expanded ? storyParagraphs.length : 12).map((p, i) => (
                 <p
                   key={i}
-                  className="text-base leading-relaxed text-cream-100/70 sm:text-lg"
+                  className="text-base leading-relaxed text-forest-700/80 sm:text-lg"
                 >
                   {p}
                 </p>
