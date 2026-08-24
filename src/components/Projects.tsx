@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Download, ExternalLink } from 'lucide-react';
+// import { Download, ExternalLink } from 'lucide-react';
 
 export default function Projects() {
   return (
@@ -30,7 +30,7 @@ export default function Projects() {
               <p>Trained initially in nursing at KMTC Machakos, Nelly later developed a passion for community health, advocacy and health systems strengthening. She joined RHNK in 2012, rose to Programme Manager in 2017 and became Executive Director in 2018.</p>
               <p>Under her leadership, RHNK has significantly expanded its programmes, partnerships and network of healthcare providers while strengthening its role in reproductive-health advocacy and policy engagement. A participant in the 2022 WomenLift Health Leadership Programme, Nelly is passionate about mentorship, institutional growth, women's leadership and improving access to reproductive-health services for underserved communities.</p>
               <div className="flex flex-wrap gap-3 pt-2">
-                <a
+                {/* <a
                   href="/resources/ABOUT%20ME.docx"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -38,15 +38,15 @@ export default function Projects() {
                 >
                   View Profile Document
                   <ExternalLink className="h-4 w-4" />
-                </a>
-                <a
+                </a> 
+                 <a
                   href="/resources/ABOUT%20ME.docx"
                   download
                   className="inline-flex items-center gap-2 rounded-full border border-forest-200 px-5 py-2 text-sm font-semibold text-forest-700 transition-colors hover:border-gold-400 hover:text-gold-700"
                 >
                   Download
                   <Download className="h-4 w-4" />
-                </a>
+                </a> */}
               </div>
             </div>
           </div>
