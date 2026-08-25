@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
-import { ArrowRight, CalendarCheck2, HeartPulse, Lightbulb, MonitorPlay, X } from 'lucide-react';
-import { Link, Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom';
+import { ArrowRight, CalendarCheck2, ExternalLink, HeartPulse, Lightbulb, MonitorPlay, Quote, X } from 'lucide-react';
+import { Link, Navigate, Outlet, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import ProfileHero from '@/components/ProfileHero';
 import PageHero from '@/components/PageHero';
 import Story from '@/components/Story';
 import Impact from '@/components/Impact';
-import Leadership from '@/components/Leadership';
 import Projects from '@/components/Projects';
 import Speaking from '@/components/Speaking';
 import Insights from '@/components/Insights';
@@ -16,6 +15,7 @@ import Resources from '@/components/Resources';
 import Gallery from '@/components/Gallery';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import { publications } from '@/data/publications';
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -161,7 +161,7 @@ function HomePage() {
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="aspect-[16/9] w-full object-cover"
+                    className="aspect-[16/9] w-full object-cover transition-transform duration-500 hover:scale-105"
                     loading="lazy"
                   />
                   <div className="p-6">
@@ -174,7 +174,7 @@ function HomePage() {
                       to="/work"
                       className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-forest-700 hover:text-gold-700"
                     >
-                      Click More
+                      Learn More
                       <ArrowRight className="h-4 w-4" />
                     </Link>
                   </div>
@@ -266,7 +266,7 @@ function HomePage() {
         </div>
       )}
 
-      <section id="gallery-home" className="bg-white py-20 lg:py-24">
+      <section id="gallery-home" className="overflow-hidden bg-white py-20 lg:py-24">
         <div className="container-px">
           <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-badge text-forest-700">
             <span className="h-px w-8 bg-gold-500" />
@@ -276,16 +276,24 @@ function HomePage() {
             Scrolling moments from the journey
           </h2>
 
-          <div className="mt-8 flex snap-x gap-4 overflow-x-auto pb-4">
-            {homeGallery.slice(0, 10).map((image, index) => (
-              <img
-                key={image}
-                src={image}
-                alt={`Gallery moment ${index + 1}`}
-                className="h-40 w-56 shrink-0 snap-start rounded-xl border border-forest-100 object-cover shadow-sm sm:h-44 sm:w-64"
-                loading="lazy"
-              />
-            ))}
+          <div className="mt-8 overflow-hidden">
+            <div
+              className="flex gap-4"
+              style={{ width: 'max-content', animation: 'scroll-gallery 30s linear infinite' }}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLDivElement).style.animationPlayState = 'paused')}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLDivElement).style.animationPlayState = 'running')}
+            >
+              {[...homeGallery, ...homeGallery].map((image, index) => (
+                <div key={index} className="h-40 w-56 shrink-0 overflow-hidden rounded-xl border border-forest-100 shadow-sm sm:h-44 sm:w-64">
+                  <img
+                    src={image}
+                    alt={`Gallery moment ${(index % homeGallery.length) + 1}`}
+                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -311,7 +319,7 @@ function HomePage() {
                 <img
                   src={article === 1 ? '/resources/nelly2.jpg' : '/resources/nelly3.jpg'}
                   alt={`Featured article ${article}`}
-                  className="aspect-[16/9] w-full object-cover"
+                  className="aspect-[16/9] w-full object-cover transition-transform duration-500 hover:scale-105"
                   loading="lazy"
                 />
                 <div className="p-6">
@@ -368,6 +376,39 @@ function StoryPage() {
 }
 
 function WorkPage() {
+  const [activeTv, setActiveTv] = useState<string | null>(null);
+
+  const tvLinks = [
+    {
+      url: 'https://www.youtube.com/watch?v=KZN6LGPQVYI&t=93s',
+      title: 'Ms. Nelly Munyasia, Executive Director, RHNK | RHNK Pan-African Conference 2026',
+      duration: '13:06',
+    },
+    {
+      url: 'https://www.youtube.com/watch?v=69S3KRzodMA&t=15s',
+      title: 'Powerful Speech by RHNK E.D Nelly Munyasia | Inspiring Student Story',
+      duration: '14:44',
+    },
+    {
+      url: 'https://www.youtube.com/watch?v=N-MjyVdHDQU',
+      title: '#RhnkConference2020',
+      duration: '3:20',
+    },
+  ];
+
+  useEffect(() => {
+    if (!activeTv) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setActiveTv(null);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [activeTv]);
+
   return (
     <main>
       <PageHero
@@ -378,8 +419,227 @@ function WorkPage() {
         ctaLabel="View impact"
         ctaTo="/impact"
       />
-      <Leadership />
-      <Impact />
+
+      <section id="rhnk" className="scroll-mt-24 bg-cream-50 py-20 lg:py-24">
+        <div className="container-px">
+          <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-badge text-forest-700">
+            <span className="h-px w-8 bg-gold-500" />
+            RHNK
+          </span>
+          <div className="mt-8 grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+            <div className="overflow-hidden rounded-2xl shadow-sm">
+              <img
+                src="/images/rhnk-launch.jpg"
+                alt="RHNK work"
+                className="aspect-[16/10] w-full object-cover transition-transform duration-500 hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <article className="rounded-2xl border border-forest-100 bg-white p-7 shadow-sm">
+              <h2 className="font-serif text-3xl font-semibold text-forest-800">RHNK</h2>
+              <p className="mt-4 text-sm leading-relaxed text-forest-700/80 sm:text-base">
+                The Reproductive Health Network Kenya (RHNK) champions Comprehensive Sexual and Reproductive Health and Rights (SRHR). We aim to reduce maternal morbidity and mortality rates, particularly focusing on critical factors like postpartum hemorrhage and unsafe abortion, among other contributors to maternal health challenges. RHNK implements strategic interventions to improve maternal healthcare outcomes in Kenya.
+              </p>
+              <a
+                href="https://rhnk.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex items-center gap-2 rounded-full border border-gold-400/50 px-5 py-2 text-sm font-semibold text-gold-600 transition-colors hover:bg-gold-400 hover:text-forest-800"
+              >
+                Visit RHNK Website
+                <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+            </article>
+          </div>
+
+          <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2">
+            {[
+              { url: 'https://www.youtube.com/watch?v=8PAoP7-L9lc', title: 'THE PRIDE OF TOROSEI LOCATION, KAJIADO COUNTY | RHNK in Kajiado', duration: '10:42' },
+              { url: 'https://www.youtube.com/watch?v=VoQZ0Dnl0b4', title: 'RHNK and IPPF SRHR Humanitarian Response in Samburu |Video courtesy of BBC Africa news features', duration: '4:36' },
+            ].map((video) => {
+              const embedUrl = toEmbedUrl(video.url);
+              const thumbnailUrl = toThumbnailUrl(video.url);
+              if (!embedUrl || !thumbnailUrl) return null;
+              return (
+                <article key={video.url} className="overflow-hidden rounded-2xl border border-gold-200 bg-white p-3 shadow-sm">
+                  <button
+                    type="button"
+                    onClick={() => setActiveTv(`${embedUrl}?autoplay=1&rel=0`)}
+                    className="group relative block w-full overflow-hidden rounded-xl"
+                    aria-label={`Play ${video.title}`}
+                  >
+                    <img
+                      src={thumbnailUrl}
+                      alt={video.title}
+                      className="aspect-video w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 grid place-items-center bg-forest-900/28">
+                      <span className="inline-flex h-14 w-20 items-center justify-center rounded-2xl bg-[#FF0000] shadow-lg shadow-forest-900/40">
+                        <span className="ml-1 h-0 w-0 border-y-[9px] border-y-transparent border-l-[14px] border-l-white" />
+                      </span>
+                    </div>
+                    <span className="absolute bottom-3 right-3 rounded bg-black/80 px-2 py-1 font-mono text-xs font-semibold text-white">
+                      {video.duration}
+                    </span>
+                  </button>
+                  <h3 className="mt-4 px-1 font-serif text-xl font-semibold text-forest-800">{video.title}</h3>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section id="rhnk-conference" className="scroll-mt-24 bg-white py-20 lg:py-24">
+        <div className="container-px">
+          <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-badge text-forest-700">
+            <span className="h-px w-8 bg-gold-500" />
+            RHNK Conference
+          </span>
+          <div className="mt-8 grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+            <div className="overflow-hidden rounded-2xl shadow-sm">
+              <img
+                src="/resources/rhnk2025.jpg"
+                alt="RHNK Conference"
+                className="aspect-[16/10] w-full object-cover transition-transform duration-500 hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <article className="rounded-2xl border border-forest-100 bg-cream-50 p-7 shadow-sm">
+              <h2 className="font-serif text-3xl font-semibold text-forest-800">RHNK AYSRHR Scientific Conference</h2>
+              <p className="mt-4 text-sm leading-relaxed text-forest-700/80 sm:text-base">
+                The Reproductive Health Network Kenya (RHNK), in partnership with the Ministry of Health - Kenya, convenes an annual Pan-African Adolescent and Youth Sexual and Reproductive Health and Rights (AYSRHR) Scientific Conference now entering its 10th year. This annual gathering brings together leaders and stakeholders from government, civil society, academia, private sector, development partners, and youth-led organizations to share knowledge, strengthen partnerships, and advance access to quality SRHR services.
+              </p>
+              <a
+                href="https://rhnk.org/conference"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex items-center gap-2 rounded-full border border-gold-400/50 px-5 py-2 text-sm font-semibold text-gold-600 transition-colors hover:bg-gold-400 hover:text-forest-800"
+              >
+                Visit Conference Website
+                <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+            </article>
+          </div>
+
+          <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { url: 'https://www.youtube.com/watch?v=q-I1iYGhLPk&t=19s', title: 'RHNK PanAfrican Conference 2026 | Opening Ceremony Highlights', duration: '2:30' },
+              { url: 'https://www.youtube.com/watch?v=kIpukvtuV48', title: 'Youth Caravan & Chini ya Mnazi V2 Highlights | RHNKPanAfricanConference2026', duration: '1:46' },
+              { url: 'https://www.youtube.com/watch?v=_0hFwZtRoqU', title: 'RHNK Pan-African Conference 2025 Highlights | Voices, Commitments & Change', duration: '1:31' },
+              { url: 'https://www.youtube.com/watch?v=s54DIbBSmOg', title: 'YOUTH CARAVAN-On The Road to SRHR Freedom | RHNK Pan-African Conference 2025', duration: '2:01' },
+            ].map((video) => {
+              const embedUrl = toEmbedUrl(video.url);
+              const thumbnailUrl = toThumbnailUrl(video.url);
+              if (!embedUrl || !thumbnailUrl) return null;
+              return (
+                <article key={video.url} className="overflow-hidden rounded-2xl border border-gold-200 bg-white p-3 shadow-sm">
+                  <button
+                    type="button"
+                    onClick={() => setActiveTv(`${embedUrl}?autoplay=1&rel=0`)}
+                    className="group relative block w-full overflow-hidden rounded-xl"
+                    aria-label={`Play ${video.title}`}
+                  >
+                    <img
+                      src={thumbnailUrl}
+                      alt={video.title}
+                      className="aspect-video w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 grid place-items-center bg-forest-900/28">
+                      <span className="inline-flex h-14 w-20 items-center justify-center rounded-2xl bg-[#FF0000] shadow-lg shadow-forest-900/40">
+                        <span className="ml-1 h-0 w-0 border-y-[9px] border-y-transparent border-l-[14px] border-l-white" />
+                      </span>
+                    </div>
+                    <span className="absolute bottom-3 right-3 rounded bg-black/80 px-2 py-1 font-mono text-xs font-semibold text-white">
+                      {video.duration}
+                    </span>
+                  </button>
+                  <h3 className="mt-4 px-1 font-serif text-base font-semibold text-forest-800">{video.title}</h3>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section id="nelly-tv" className="scroll-mt-24 bg-gold-50 py-20 lg:py-24">
+        <div className="container-px">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div className="max-w-2xl">
+              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-badge text-forest-700">
+                <span className="h-px w-8 bg-gold-600" />
+                Nelly TV
+              </span>
+              <h2 className="mt-5 font-serif text-3xl font-medium text-forest-800 sm:text-4xl">Video features</h2>
+            </div>
+            <MonitorPlay className="h-10 w-10 text-gold-700" aria-hidden="true" />
+          </div>
+          <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-3">
+            {tvLinks.map((video) => {
+              const embedUrl = toEmbedUrl(video.url);
+              const thumbnailUrl = toThumbnailUrl(video.url);
+              if (!embedUrl || !thumbnailUrl) return null;
+
+              return (
+                <article key={video.url} className="overflow-hidden rounded-2xl border border-gold-200 bg-white p-3 shadow-sm">
+                  <button
+                    type="button"
+                    onClick={() => setActiveTv(`${embedUrl}?autoplay=1&rel=0`)}
+                    className="group relative block w-full overflow-hidden rounded-xl"
+                    aria-label="Play Nelly TV video"
+                  >
+                    <img
+                      src={thumbnailUrl}
+                      alt={video.title}
+                      className="aspect-video w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 grid place-items-center bg-forest-900/28">
+                      <span className="inline-flex h-14 w-20 items-center justify-center rounded-2xl bg-[#FF0000] shadow-lg shadow-forest-900/40">
+                        <span className="ml-1 h-0 w-0 border-y-[9px] border-y-transparent border-l-[14px] border-l-white" />
+                      </span>
+                    </div>
+                    <span className="absolute bottom-3 right-3 rounded bg-black/80 px-2 py-1 font-mono text-xs font-semibold text-white">
+                      {video.duration}
+                    </span>
+                  </button>
+                  <h3 className="mt-4 px-1 font-serif text-xl font-semibold text-forest-800">{video.title}</h3>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {activeTv && (
+        <div
+          className="fixed inset-0 z-[90] flex items-center justify-center bg-forest-900/90 backdrop-blur-sm"
+          onClick={() => setActiveTv(null)}
+        >
+          <div
+            className="relative h-[88vh] w-[88vw] max-h-[920px] max-w-[1600px]"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setActiveTv(null)}
+              className="absolute -right-2 -top-10 text-cream-50 transition-colors hover:text-gold-400 sm:right-0"
+              aria-label="Close video"
+            >
+              <X className="h-7 w-7" />
+            </button>
+            <iframe
+              src={activeTv}
+              title="Nelly TV pop out player"
+              className="h-full w-full rounded-xl border border-cream-100/10"
+              allow="autoplay; encrypted-media; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      )}
     </main>
   );
 }
@@ -398,7 +658,7 @@ function RhnkPage() {
       <section className="bg-cream-50 py-20 lg:py-24">
         <div className="container-px grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
           <img
-            src="/resources/rhnk2.jpg"
+            src="/images/rhnk-launch.jpg"
             alt="RHNK work"
             className="aspect-[16/10] w-full rounded-2xl object-cover shadow-sm"
             loading="lazy"
@@ -408,6 +668,15 @@ function RhnkPage() {
             <p className="mt-4 text-sm leading-relaxed text-forest-700/80 sm:text-base">
               The Reproductive Health Network Kenya (RHNK) champions Comprehensive Sexual and Reproductive Health and Rights (SRHR). We aim to reduce maternal morbidity and mortality rates, particularly focusing on critical factors like postpartum hemorrhage and unsafe abortion, among other contributors to maternal health challenges. RHNK implements strategic interventions to improve maternal healthcare outcomes in Kenya.
             </p>
+            <a
+              href="https://rhnk.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center gap-2 rounded-full border border-gold-400/50 px-5 py-2 text-sm font-semibold text-gold-600 transition-colors hover:bg-gold-400 hover:text-forest-800"
+            >
+              Visit RHNK Website
+              <ExternalLink className="h-3.5 w-3.5" />
+            </a>
           </article>
         </div>
       </section>
@@ -439,6 +708,15 @@ function RhnkConferencePage() {
             <p className="mt-4 text-sm leading-relaxed text-forest-700/80 sm:text-base">
               The Reproductive Health Network Kenya (RHNK), in partnership with the Ministry of Health - Kenya, convenes an annual Pan-African Adolescent and Youth Sexual and Reproductive Health and Rights (AYSRHR) Scientific Conference now entering its 10th year. This annual gathering brings together leaders and stakeholders from government, civil society, academia, private sector, development partners, and youth-led organizations to share knowledge, strengthen partnerships, and advance access to quality SRHR services.
             </p>
+            <a
+              href="https://rhnk.org/conference"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center gap-2 rounded-full border border-gold-400/50 px-5 py-2 text-sm font-semibold text-gold-600 transition-colors hover:bg-gold-400 hover:text-forest-800"
+            >
+              Visit Conference Website
+              <ExternalLink className="h-3.5 w-3.5" />
+            </a>
           </article>
         </div>
       </section>
@@ -578,17 +856,132 @@ function ImpactPage() {
   );
 }
 
+function ArticlePage() {
+  const { id } = useParams<{ id: string }>();
+  const article = publications.find((p) => p.id === id);
+
+  if (!article) return <Navigate to="/insights" replace />;
+
+  // The 4th paragraph of the first article is a section heading, not body text
+  const isHeading = (text: string) =>
+    article.id === 'reproductive-health-policy' && text === 'Health Coverage Must Include Reproductive Health';
+
+  return (
+    <main>
+      <PageHero
+        eyebrow={article.category.toUpperCase()}
+        title={article.title}
+        highlight=""
+        description={article.excerpt}
+        ctaLabel="Back to Insights"
+        ctaTo="/insights"
+      />
+      <article className="bg-white py-16 lg:py-24">
+        <div className="container-px">
+          <div className="mx-auto max-w-3xl">
+            <div className="overflow-hidden rounded-2xl">
+              <img
+                src={article.image}
+                alt={article.imageAlt}
+                className="aspect-[16/7] w-full object-cover object-[center_12%]"
+                loading="eager"
+              />
+            </div>
+            <div className="mt-6 flex items-center gap-3 text-xs font-semibold uppercase tracking-wide-lg text-forest-700/55">
+              <span className="text-gold-600">{article.category}</span>
+              <span className="h-1 w-1 rounded-full bg-accent-red" />
+              <span>{article.date}</span>
+            </div>
+            <h1 className="mt-4 font-serif text-3xl font-semibold leading-tight text-forest-900 sm:text-4xl">
+              {article.title}
+            </h1>
+            <div className="mt-8 space-y-5 text-base leading-relaxed text-forest-700/85">
+              {article.body?.map((paragraph, i) =>
+                isHeading(paragraph) ? (
+                  <h2 key={i} className="pt-4 font-serif text-xl font-semibold text-forest-900 sm:text-2xl">
+                    {paragraph}
+                  </h2>
+                ) : (
+                  <p key={i}>{paragraph}</p>
+                )
+              )}
+            </div>
+            <div className="mt-12 border-t border-forest-100 pt-8">
+              <Link
+                to="/insights"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-gold-600 hover:text-gold-700"
+              >
+                <ArrowRight className="h-4 w-4 rotate-180" />
+                Back to Insights
+              </Link>
+            </div>
+          </div>
+        </div>
+      </article>
+    </main>
+  );
+}
+
 function InsightsPage() {
+  const insightsPhotos = [
+    '/resources/nelly2.jpg',
+    '/assets/my-story.jpg',
+    '/images/IMG_9367.jpg',
+    '/images/IMG_5118.jpg',
+    '/images/IMG_8608.jpg',
+  ];
+
+  const insightsQuotes = [
+    'Every girl in Kenya today needs systems that work for her.',
+    'Together in solidarity we shall continue transforming the health outcomes for all in Kenya.',
+    'A leader. A Health Advocate. A Voice for change.',
+    'Gender diverse populations, disability and diverse deserve the best reproductive services.',
+  ];
+
   return (
     <main>
       <PageHero
         eyebrow="INSIGHTS"
         title="INSIGHTS"
         highlight=""
-        description="Leadership can be very lonely. People think you have everything figured out and don't need help, while still expecting you to show up for them."
+        description="Ideas, reflections & advocacy"
         ctaLabel="View resources"
         ctaTo="/resources"
       />
+
+      <section className="bg-cream-50 py-16 lg:py-20">
+        <div className="container-px">
+          {/* Photo strip with gold dashed border */}
+          <div className="rounded-2xl border-2 border-dashed border-gold-400/60 p-3 sm:p-4">
+            <div className="flex gap-2 sm:gap-3">
+              {insightsPhotos.map((src, i) => (
+                <div key={src} className="flex-1 overflow-hidden rounded-xl">
+                  <img
+                    src={src}
+                    alt={`Nelly Munyasia speaking engagement ${i + 1}`}
+                    className="h-44 w-full object-cover transition-transform duration-500 hover:scale-105 sm:h-56 lg:h-64"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Quotes grid */}
+          <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {insightsQuotes.map((quote, i) => (
+              <div key={i} className="flex flex-col gap-4">
+                <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest-800">
+                  <Quote className="h-5 w-5 text-gold-400" />
+                </div>
+                <p className="text-sm font-semibold leading-relaxed text-forest-800 sm:text-base">{quote}</p>
+                <div className="mt-auto h-0.5 w-12 bg-gold-400" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <Insights />
       <Speaking />
     </main>
@@ -650,6 +1043,7 @@ function App() {
           <Route path="/nelly-tv" element={<NellyTvPage />} />
           <Route path="/impact" element={<ImpactPage />} />
           <Route path="/insights" element={<InsightsPage />} />
+          <Route path="/insights/:id" element={<ArticlePage />} />
           <Route path="/resources" element={<ResourcesPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/contact" element={<ContactPage />} />

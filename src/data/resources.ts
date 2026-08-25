@@ -70,4 +70,28 @@ export const resources: Resource[] = [
     description: 'https://rhnk.org/conference/resources#resources-policy-briefs',
     url: 'https://rhnk.org/conference/resources#resources-policy-briefs',
   },
+  {
+    id: 'r8',
+    title: 'Trump Era Stirs Concern in Kenya over Aid and Policy Shifts',
+    type: 'In the News',
+    date: '2025',
+    description: 'NTV Kenya',
+    url: 'https://ntvkenya.co.ke/news/trump-era-stirs-concern-in-kenya-over-aid-and-policy-shifts/',
+  },
+  {
+    id: 'r9',
+    title: 'A Global Milestone: 69 Years of Progress and 30 Years After Beijing',
+    type: 'In the News',
+    date: '2024',
+    description: 'Citizen Digital',
+    url: 'https://citizen.digital/article/a-global-milestone-69-years-of-progress-and-30-years-after-beijing-n359399',
+  },
+  {
+    id: 'r10',
+    title: 'GOP Anti-Abortion Policies Harm Women Around the Globe',
+    type: 'In the News',
+    date: '2024',
+    description: 'KALW / Your Call',
+    url: 'https://www.kalw.org/show/your-call/2024-05-14/gop-anti-abortion-policies-harm-women-around-the-globe',
+  },
 ];

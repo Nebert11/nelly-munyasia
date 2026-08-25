@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { speakingTopics } from '@/data/speaking';
 
 const speakingImage =
   '/assets/speaking.jpg';
@@ -25,7 +24,7 @@ export default function Speaking() {
               <img
                 src={speakingImage}
                 alt="Woman delivering a speech at a conference podium"
-                className="aspect-[4/3] w-full object-cover"
+                className="aspect-[4/3] w-full object-cover transition-transform duration-500 hover:scale-105"
                 loading="lazy"
               />
             </div>
@@ -34,7 +33,7 @@ export default function Speaking() {
               <img
                 src={speakingImage2}
                 alt="Woman in traditional African attire at a public speaking event"
-                className="aspect-square w-full object-cover"
+                className="aspect-square w-full object-cover transition-transform duration-500 hover:scale-105"
                 loading="lazy"
               />
             </div>
@@ -52,28 +51,29 @@ export default function Speaking() {
               Speaking
             </span>
             <h2 className="mt-5 font-serif text-3xl font-medium leading-tight text-forest-800 sm:text-4xl lg:text-5xl">
-              Speaking for{' '}
-              <span className="text-gold-600">Change</span>
+              Speaking for <span className="text-gold-600">Change</span>,{' '}
+              Partner With Me
             </h2>
-            <p className="mt-5 max-w-md text-base leading-relaxed text-forest-700/80 sm:text-lg">
-              Available for keynotes, panel discussions, and convenings that
-              advance the conversation on health, rights, and equity.
+            <p className="mt-3 text-sm font-semibold uppercase tracking-wide text-forest-700/60 sm:text-base">
+              Keynote Speaking. Shared Experiences. Inspired Action.
             </p>
-
-            {/* Topics */}
-            <div className="mt-8 flex flex-wrap gap-3">
-              {speakingTopics.map((topic) => (
-                <span
-                  key={topic.id}
-                  className="rounded-full border border-forest-200 bg-white px-4 py-2 text-xs font-medium text-forest-700/80 transition-colors hover:border-gold-400/50 hover:text-gold-700"
-                >
-                  {topic.label}
-                </span>
-              ))}
+            <div className="mt-5 max-w-lg space-y-4 text-base leading-relaxed text-forest-700/80">
+              <p>
+                I believe that meaningful change begins with honest conversations, shared experiences and the courage to inspire others to act.
+              </p>
+              <p>
+                I welcome opportunities to partner with organisations, institutions, conferences, universities and communities as a keynote speaker, panelist, facilitator or thought leader, sharing practical insights drawn from my professional journey, leadership experience and work in reproductive health, advocacy and health systems strengthening.
+              </p>
+              <p>
+                Through engaging conversations and real-world experiences, I speak on leadership, women's health, reproductive health and rights, health equity, advocacy, community engagement and building resilient health systems.
+              </p>
+              <p>
+                Whether addressing a global conference, a professional audience, young leaders or community advocates, my goal is simple: to inform, inspire and turn experience into action.
+              </p>
             </div>
 
             <Link to="/contact" className="btn-primary mt-10 group">
-              Invite Me to Speak
+              Let's Start a Conversation
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </motion.div>

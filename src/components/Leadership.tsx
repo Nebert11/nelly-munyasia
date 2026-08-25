@@ -59,7 +59,7 @@ export default function Leadership() {
               <img
                 src={section.image}
                 alt={section.title}
-                className="aspect-[16/9] w-full object-cover"
+                className="aspect-[16/9] w-full object-cover transition-transform duration-500 hover:scale-105"
                 loading="lazy"
               />
               <div className="p-6">

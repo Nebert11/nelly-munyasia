@@ -77,7 +77,7 @@ export default function Hero() {
             </motion.p>
 
             {/* Signature */}
-            <motion.div variants={item} className="mt-8">
+            {/* <motion.div variants={item} className="mt-8">
               <p className="font-script text-3xl text-cream-50 sm:text-4xl">
                 Nelly Munyasia
               </p>
@@ -85,7 +85,7 @@ export default function Hero() {
               <p className="mt-2 text-xs font-medium uppercase tracking-wide-lg text-cream-100/50">
                 Executive Director, RHNK
               </p>
-            </motion.div>
+            </motion.div> */}
 
             {/* CTAs */}
             <motion.div

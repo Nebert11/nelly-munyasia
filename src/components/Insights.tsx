@@ -4,9 +4,6 @@ import { Link } from 'react-router-dom';
 import { publications } from '@/data/publications';
 
 export default function Insights() {
-  const featured = publications.find((p) => p.featured);
-  const rest = publications.filter((p) => !p.featured);
-
   return (
     <section id="insights" className="relative bg-white section-py">
       <div className="container-px">
@@ -35,50 +32,8 @@ export default function Insights() {
           </Link>
         </motion.div>
 
-        {/* Featured article */}
-        {featured && (
-          <motion.article
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12"
-          >
-            <div className="group relative overflow-hidden rounded-2xl">
-              <img
-                src={featured.image}
-                alt={featured.imageAlt}
-                className="aspect-[16/10] w-full object-cover object-[center_12%] transition-transform duration-700 group-hover:scale-105"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest-900/20 to-transparent" />
-            </div>
-            <div className="flex flex-col justify-center">
-              <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-wide-lg text-forest-700/55">
-                <span className="text-gold-600">{featured.category}</span>
-                <span className="h-1 w-1 rounded-full bg-accent-red" />
-                <span>{featured.date}</span>
-              </div>
-              <h3 className="mt-4 font-serif text-2xl font-semibold leading-tight text-forest-800 sm:text-3xl">
-                {featured.title}
-              </h3>
-              <p className="mt-4 text-base leading-relaxed text-forest-700/80">
-                {featured.excerpt}
-              </p>
-              <Link
-                to="/resources"
-                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gold-600 transition-colors hover:text-gold-700"
-              >
-                Read Article
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </motion.article>
-        )}
-
-        {/* Smaller articles */}
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {rest.map((article, i) => (
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
+          {publications.map((article, i) => (
             <motion.article
               key={article.id}
               initial={{ opacity: 0, y: 30 }}
@@ -101,18 +56,18 @@ export default function Insights() {
                   <span className="h-1 w-1 rounded-full bg-accent-red" />
                   <span>{article.date}</span>
                 </div>
-                <h3 className="mt-3 font-serif text-lg font-semibold leading-snug text-forest-800">
+                <h3 className="mt-3 font-serif text-xl font-semibold leading-snug text-forest-800">
                   {article.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-forest-700/75">
                   {article.excerpt}
                 </p>
                 <Link
-                  to="/resources"
-                  className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-gold-600 transition-colors hover:text-gold-700"
+                  to={`/insights/${article.id}`}
+                  className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-600 transition-colors hover:text-gold-700"
                 >
                   Read Article
-                  <ArrowRight className="h-3.5 w-3.5" />
+                  <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
             </motion.article>

@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 
-const storyImage = '/assets/my-story.jpg';
+const storyImage = '/images/mystory.png';
 
 const storyParagraphs = [
   'I grew up in Bungoma County in a family of three girls.',
@@ -158,7 +158,7 @@ export default function Story() {
               <img
                 src={storyImage}
                 alt="Nelly Munyasia portrait"
-                className="aspect-[4/5] w-full object-cover"
+                className="aspect-[4/5] w-full object-cover transition-transform duration-500 hover:scale-105"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-forest-900/30 via-transparent to-transparent" />

@@ -8,14 +8,14 @@ const navLinks = [
   { label: 'About Me', to: '/profile' },
   { label: 'My Work', to: '/work' },
   { label: 'Insights', to: '/insights' },
-  { label: 'Gallery', to: '/resources' },
+  { label: 'Resources', to: '/resources' },
   { label: 'Contact', to: '/contact' },
 ];
 
 const workSubLinks = [
-  { label: 'RHNK', to: '/rhnk' },
-  { label: 'RHNK Conference', to: '/rhnk-conference' },
-  { label: 'Nelly TV', to: '/nelly-tv' },
+  { label: 'RHNK', to: '/work#rhnk' },
+  { label: 'RHNK Conference', to: '/work#rhnk-conference' },
+  { label: 'Nelly TV', to: '/work#nelly-tv' },
 ];
 
 export default function Navbar() {

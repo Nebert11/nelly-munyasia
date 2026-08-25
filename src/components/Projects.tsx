@@ -21,7 +21,7 @@ export default function Projects() {
               <img
                 src="/resources/nelly.jpg"
                 alt="Nelly Munyasia"
-                className="aspect-[4/5] w-full object-cover"
+                className="aspect-[4/5] w-full object-cover transition-transform duration-500 hover:scale-105"
                 loading="lazy"
               />
             </div>

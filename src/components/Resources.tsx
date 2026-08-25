@@ -75,99 +75,106 @@ export default function Resources() {
           </h2>
         </motion.div>
 
-        <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {resources.map((resource, i) => (
-            // Videos should show a preview with a play affordance instead of file-style actions.
-            (() => {
+        {/* Videos */}
+        <div id="videos" className="mt-14">
+          <h3 className="mb-8 font-serif text-2xl font-semibold text-forest-800">Videos</h3>
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {resources.filter((r) => r.type === 'Videos').map((resource, i) => {
               const thumbnail = getYoutubeThumbnail(resource.url);
               const embedUrl = getYoutubeEmbedUrl(resource.url);
-              const isVideo = resource.type === 'Videos' && !!thumbnail && !!embedUrl;
-
               return (
-            <motion.div
-              key={resource.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.6, delay: (i % 3) * 0.1 }}
-              className="group flex flex-col rounded-2xl border border-forest-100 bg-white p-6 shadow-sm hover:border-gold-300"
-            >
-              {isVideo && (
-                <div className="mb-5">
-                  <button
-                    type="button"
-                    onClick={() => setActiveVideo(embedUrl)}
-                    className="group/video relative block w-full overflow-hidden rounded-xl"
-                    aria-label="Play video"
-                  >
-                    <img
-                      src={thumbnail}
-                      alt={resource.title}
-                      className="aspect-video w-full object-cover transition-transform duration-500 group-hover/video:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-forest-900/30" />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="inline-flex h-14 w-20 items-center justify-center rounded-2xl bg-[#FF0000] shadow-lg shadow-forest-900/40">
-                        <span className="ml-1 h-0 w-0 border-y-[9px] border-y-transparent border-l-[14px] border-l-white" />
-                      </span>
+                <motion.div
+                  key={resource.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-60px' }}
+                  transition={{ duration: 0.6, delay: (i % 3) * 0.1 }}
+                  className="group flex flex-col rounded-2xl border border-forest-100 bg-white p-6 shadow-sm hover:border-gold-300"
+                >
+                  {thumbnail && embedUrl && (
+                    <div className="mb-5">
+                      <button
+                        type="button"
+                        onClick={() => setActiveVideo(embedUrl)}
+                        className="group/video relative block w-full overflow-hidden rounded-xl"
+                        aria-label="Play video"
+                      >
+                        <img
+                          src={thumbnail}
+                          alt={resource.title}
+                          className="aspect-video w-full object-cover transition-transform duration-500 group-hover/video:scale-105"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-forest-900/30" />
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <span className="inline-flex h-14 w-20 items-center justify-center rounded-2xl bg-[#FF0000] shadow-lg shadow-forest-900/40">
+                            <span className="ml-1 h-0 w-0 border-y-[9px] border-y-transparent border-l-[14px] border-l-white" />
+                          </span>
+                        </div>
+                        <span className="absolute bottom-3 right-3 rounded bg-black/80 px-2 py-1 font-mono text-xs font-semibold text-white">
+                          {resource.duration ?? '--:--'}
+                        </span>
+                      </button>
+                      <h4 className="mt-4 px-1 font-serif text-lg font-semibold text-forest-800">
+                        {resource.title}
+                      </h4>
                     </div>
-                    <span className="absolute bottom-3 right-3 rounded bg-black/80 px-2 py-1 font-mono text-xs font-semibold text-white">
-                      {resource.duration ?? '--:--'}
-                    </span>
-                  </button>
-                  {!isRawUrl(resource.title) && (
-                    <h3 className="mt-4 px-1 font-serif text-xl font-semibold text-forest-800">
-                      {resource.title}
-                    </h3>
                   )}
-                </div>
-              )}
-
-              {!isVideo && (
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gold-400/10 text-gold-400 transition-colors group-hover:bg-gold-400 group-hover:text-forest-700">
-                  <FileText className="h-5 w-5" />
-                </div>
-                <span className="rounded-full border border-forest-200 px-3 py-1 text-[10px] font-semibold uppercase tracking-wide-lg text-forest-700/65">
-                  {resource.type}
-                </span>
-              </div>
-              )}
-
-              {!isVideo && !isRawUrl(resource.title) && (
-                <h3 className="mt-5 font-serif text-lg font-semibold leading-snug text-forest-800">
-                  {resource.title}
-                </h3>
-              )}
-              {!isRawUrl(resource.description) && (
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-forest-700/75">
-                  {resource.description}
-                </p>
-              )}
-
-              {!isVideo && resource.url && (
-                <div className="mt-5">
-                  <a
-                    href={resource.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center rounded-full border border-gold-400/40 px-4 py-2 text-xs font-semibold uppercase tracking-wide-lg text-gold-400 transition-colors hover:bg-gold-400 hover:text-forest-700"
-                  >
-                    Read More
-                  </a>
-                </div>
-              )}
-
-              {resource.date && (
-                <div className="mt-5 border-t border-forest-100 pt-4">
-                  <span className="text-xs text-forest-700/55">{resource.date}</span>
-                </div>
-              )}
-            </motion.div>
+                </motion.div>
               );
-            })()
-          ))}
+            })}
+          </div>
+        </div>
+
+        {/* Articles */}
+        <div id="articles" className="mt-16">
+          <h3 className="mb-8 font-serif text-2xl font-semibold text-forest-800">Articles</h3>
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {resources.filter((r) => r.type === 'In the News' || r.type === 'Resources').map((resource, i) => (
+              <motion.div
+                key={resource.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.6, delay: (i % 3) * 0.1 }}
+                className="group flex flex-col rounded-2xl border border-forest-100 bg-white p-6 shadow-sm hover:border-gold-300"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gold-400/10 text-gold-400 transition-colors group-hover:bg-gold-400 group-hover:text-forest-700">
+                    <FileText className="h-5 w-5" />
+                  </div>
+                  <span className="rounded-full border border-forest-200 px-3 py-1 text-[10px] font-semibold uppercase tracking-wide-lg text-forest-700/65">
+                    {resource.type}
+                  </span>
+                </div>
+                <h4 className="mt-5 font-serif text-lg font-semibold leading-snug text-forest-800">
+                  {resource.title}
+                </h4>
+                {!isRawUrl(resource.description) && (
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-forest-700/75">
+                    {resource.description}
+                  </p>
+                )}
+                {resource.url && (
+                  <div className="mt-5">
+                    <a
+                      href={resource.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center rounded-full border border-gold-400/40 px-4 py-2 text-xs font-semibold uppercase tracking-wide-lg text-gold-400 transition-colors hover:bg-gold-400 hover:text-forest-700"
+                    >
+                      Read More
+                    </a>
+                  </div>
+                )}
+                {resource.date && (
+                  <div className="mt-5 border-t border-forest-100 pt-4">
+                    <span className="text-xs text-forest-700/55">{resource.date}</span>
+                  </div>
+                )}
+              </motion.div>
+            ))}
+          </div>
         </div>
         </div>
       </section>
