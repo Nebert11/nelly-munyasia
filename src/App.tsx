@@ -288,7 +288,7 @@ function HomePage() {
                   <img
                     src={image}
                     alt={`Gallery moment ${(index % homeGallery.length) + 1}`}
-                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                    className="h-full w-full object-cover object-[center_10%] transition-transform duration-500 hover:scale-105"
                     loading="lazy"
                   />
                 </div>
@@ -358,6 +358,15 @@ function HomePage() {
             Go to About Me
             <ArrowRight className="h-4 w-4" />
           </Link>
+        </div>
+      </section>
+
+      <section className=" py-16">
+        <div className="container-px grid grid-cols-3 items-start justify-between gap-4 sm:flex-row sm:items-center">
+          <img src="/images/quote1.jpg" alt="" />
+          <img src="/images/quote2.jpg" alt="" />
+          {/* <img src="/images/quote3.jpg" alt="" /> */}
+          <img src="/images/quote4.jpg" alt="" />
         </div>
       </section>
     </main>
