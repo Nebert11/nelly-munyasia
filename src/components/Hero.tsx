@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const bgImage = '/assets/hero-background.jpg';
+const bgImage = '/images/design.jpg';
 const portraitImage = '/assets/hero-image.png';
 
 const container = {
@@ -27,14 +27,13 @@ export default function Hero() {
       id="home"
       className="relative min-h-[700px] w-full overflow-hidden bg-forest-700 lg:h-screen"
     >
-      {/* Background community image with overlays */}
+      {/* Background image with linear-right overlay */}
       <div className="absolute inset-0">
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-35"
+          className="absolute inset-0 bg-cover bg-center opacity-60"
           style={{ backgroundImage: `url(${bgImage})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-forest-700/80 via-forest-700/48 to-forest-800/72" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,44,36,0.08)_0%,rgba(6,44,36,0.22)_38%,rgba(6,44,36,0.62)_100%)]" />
+        {/* <div className="absolute inset-0 bg-gradient-to-r from-forest-900 via-forest-900/75 to-forest-800/20" /> */}
       </div>
 
       {/* Content */}

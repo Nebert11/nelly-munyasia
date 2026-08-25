@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ArrowRight, CalendarCheck2, ExternalLink, HeartPulse, Lightbulb, MonitorPlay, Quote, X } from 'lucide-react';
+import { ArrowRight, CalendarCheck2, ExternalLink, HeartPulse, MonitorPlay, Quote, X } from 'lucide-react';
 import { Link, Navigate, Outlet, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
@@ -311,28 +311,33 @@ function HomePage() {
           </div>
 
           <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
-            {[1, 2].map((article) => (
+            {publications.map((article) => (
               <article
-                key={article}
+                key={article.id}
                 className="overflow-hidden rounded-2xl border border-cream-100/15 bg-forest-800/45"
               >
                 <img
-                  src={article === 1 ? '/resources/nelly2.jpg' : '/resources/nelly3.jpg'}
-                  alt={`Featured article ${article}`}
-                  className="aspect-[16/9] w-full object-cover transition-transform duration-500 hover:scale-105"
+                  src={article.image}
+                  alt={article.imageAlt}
+                  className="aspect-[16/9] w-full object-cover object-[center_50%] transition-transform duration-500 hover:scale-105"
                   loading="lazy"
                 />
                 <div className="p-6">
-                  <h3 className="font-serif text-2xl font-semibold text-cream-50">Featured Article {article}</h3>
+                  <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-wide-lg text-cream-100/50">
+                    <span className="text-gold-400">{article.category}</span>
+                    <span className="h-1 w-1 rounded-full bg-gold-400/50" />
+                    <span>{article.date}</span>
+                  </div>
+                  <h3 className="mt-3 font-serif text-xl font-semibold leading-snug text-cream-50 sm:text-2xl">{article.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-cream-100/70 sm:text-base">
-                    Placeholder for title, summary and publication details. Final article copy and links will be added next.
+                    {article.excerpt}
                   </p>
                   <Link
-                    to="/insights"
+                    to={`/insights/${article.id}`}
                     className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-gold-400 hover:text-gold-300"
                   >
-                    Read More
-                    <Lightbulb className="h-4 w-4" />
+                    Read Article
+                    <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
               </article>
@@ -959,7 +964,7 @@ function InsightsPage() {
                   <img
                     src={src}
                     alt={`Nelly Munyasia speaking engagement ${i + 1}`}
-                    className="h-44 w-full object-cover transition-transform duration-500 hover:scale-105 sm:h-56 lg:h-64"
+                    className="h-44 w-full object-cover object-[center_10%] transition-transform duration-500 hover:scale-105 sm:h-56 lg:h-64"
                     loading="lazy"
                   />
                 </div>

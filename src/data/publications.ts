@@ -18,7 +18,7 @@ export const publications: Publication[] = [
     title: 'Why Reproductive Health Rights Are Central to Universal Health Coverage',
     excerpt:
       'Universal health coverage cannot be achieved without centering reproductive health and rights. Here is what it will take.',
-    image: '/resources/nelly.jpg',
+    image: '/images/Her-Health-Launch-2026-3.jpg',
     imageAlt: 'Group of African women professionals collaborating around a laptop',
     featured: true,
     body: [
@@ -46,7 +46,7 @@ export const publications: Publication[] = [
     title: 'Community Health Workers: The Backbone of Resilient Health Systems',
     excerpt:
       'How investing in community health workers transforms outcomes and builds trust at the last mile.',
-    image: '/resources/nelly2.jpg',
+    image: '/images/article.jpg',
     imageAlt: 'Female healthcare worker smiling with two children outside',
     body: [
       'When health systems are tested by outbreaks, emergencies, economic pressures or persistent gaps in access, one group often remains closest to the people who need care most: Community Health Workers (CHWs) and Community Health Volunteers (CHVs).',

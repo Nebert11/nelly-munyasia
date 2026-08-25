@@ -46,7 +46,7 @@ export default function Insights() {
                 <img
                   src={article.image}
                   alt={article.imageAlt}
-                  className="aspect-[16/10] w-full object-cover object-[center_12%] transition-transform duration-700 group-hover:scale-105"
+                  className="aspect-[16/10] w-full object-cover object-[center_50%] transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
                 />
               </div>
