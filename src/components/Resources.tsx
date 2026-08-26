@@ -206,6 +206,10 @@ export default function Resources() {
           </div>
         </div>
       )}
+
+      <div className="container-px mt-8 items-start justify-between sm:items-center">
+        <img src="/images/quote4.jpg" alt="" className="rounded-2xl" />
+      </div>
     </>
   );
 }

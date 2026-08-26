@@ -325,8 +325,6 @@ function HomePage() {
                 <div className="p-6">
                   <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-wide-lg text-cream-100/50">
                     <span className="text-gold-400">{article.category}</span>
-                    <span className="h-1 w-1 rounded-full bg-gold-400/50" />
-                    <span>{article.date}</span>
                   </div>
                   <h3 className="mt-3 font-serif text-xl font-semibold leading-snug text-cream-50 sm:text-2xl">{article.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-cream-100/70 sm:text-base">
@@ -362,11 +360,11 @@ function HomePage() {
       </section>
 
       <section className=" py-16">
-        <div className="container-px grid grid-cols-3 items-start justify-between gap-4 sm:flex-row sm:items-center">
+        <div className="container-px  items-start justify-between gap-4 sm:flex-row sm:items-center">
           <img src="/images/quote1.jpg" alt="" />
-          <img src="/images/quote2.jpg" alt="" />
-          {/* <img src="/images/quote3.jpg" alt="" /> */}
-          <img src="/images/quote4.jpg" alt="" />
+          {/* <img src="/images/quote2.jpg" alt="" />
+          <img src="/images/quote3.jpg" alt="" />
+          <img src="/images/quote4.jpg" alt="" /> */}
         </div>
       </section>
     </main>
@@ -897,14 +895,12 @@ function ArticlePage() {
               <img
                 src={article.image}
                 alt={article.imageAlt}
-                className="aspect-[16/7] w-full object-cover object-[center_12%]"
+                className="aspect-[16/7] w-full object-cover object-[center_45%]"
                 loading="eager"
               />
             </div>
             <div className="mt-6 flex items-center gap-3 text-xs font-semibold uppercase tracking-wide-lg text-forest-700/55">
               <span className="text-gold-600">{article.category}</span>
-              <span className="h-1 w-1 rounded-full bg-accent-red" />
-              <span>{article.date}</span>
             </div>
             <h1 className="mt-4 font-serif text-3xl font-semibold leading-tight text-forest-900 sm:text-4xl">
               {article.title}

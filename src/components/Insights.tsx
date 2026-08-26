@@ -53,8 +53,6 @@ export default function Insights() {
               <div className="p-6">
                 <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-wide-lg text-forest-700/55">
                   <span className="text-gold-600">{article.category}</span>
-                  <span className="h-1 w-1 rounded-full bg-accent-red" />
-                  <span>{article.date}</span>
                 </div>
                 <h3 className="mt-3 font-serif text-xl font-semibold leading-snug text-forest-800">
                   {article.title}
@@ -73,6 +71,10 @@ export default function Insights() {
             </motion.article>
           ))}
         </div>
+      </div>
+
+      <div className="container-px mt-8 items-start justify-between sm:items-center">
+        <img src="/images/quote2.jpg" alt="" className="rounded-2xl" />
       </div>
     </section>
   );
