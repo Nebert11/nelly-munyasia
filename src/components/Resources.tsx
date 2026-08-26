@@ -161,7 +161,7 @@ export default function Resources() {
                       href={resource.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center rounded-full border border-gold-400/40 px-4 py-2 text-xs font-semibold uppercase tracking-wide-lg text-gold-400 transition-colors hover:bg-gold-400 hover:text-forest-700"
+                      className="inline-flex items-center rounded-full border border-gold-400/40 px-4 py-2 text-xs font-semibold uppercase tracking-wide-lg text-gold-400 transition-all duration-500 hover:bg-forest-700 hover:text-white/80 hover:border-forest-700"
                     >
                       Read More
                     </a>
